@@ -4,6 +4,11 @@ import {CommentsServices} from "./services/comments-services";
 export default {
   data(){
     return{
+      value:"",
+      comments: [],
+      body:"",
+      postId:"",
+      commentId:"",
       categories:[
         {name: 'Dairy', code: 'DAI'},
         {name: 'Produce', code: 'PRD'},
@@ -17,7 +22,28 @@ export default {
           console.log("calling API")
           console.log(response.status)
           console.log(response.data)
+          this.comments=response.data;
         })
+  },
+  methods: {
+    createComment: function() {
+      new CommentsServices().postComment(this.body, this.postId)
+          .then(response => {
+            console.log("postComment", response)
+          })
+    },
+    deleteComment: function (){
+      new CommentsServices().deleteComment(this.commentId)
+          .then( response => {
+            console.log("deleteComment", response)
+          })
+    },
+    putComment: function (){
+      new CommentsServices().putComment(this.commentId, this.body, this.postId)
+          .then( response => {
+            console.log("putComment", response)
+          })
+    }
   }
 };
 </script>
@@ -51,18 +77,59 @@ export default {
       </div>
 
       <div class="field grid">
-        <label for="city" class="col-3 mb-2">{{$t("city")}}*</label>
+        <label for="category" class="col-3 mb-2">{{$t("category")}}*</label>
         <div class="col-9 p-0">
-          <pv-dropdown id="city" :options="categories" optionLabel="name" placeholder="Select a Category" class="w-full"></pv-dropdown>
+          <pv-dropdown id="category" :options="categories" optionLabel="name" placeholder="Select a Category" class="w-full"></pv-dropdown>
         </div>
       </div>
       <h3>{{$tc("product", 6)}}</h3>
-    </div>
 
+      <div class="field grid">
+        <label for="comment" class="col-3 mb-2">{{$t("comment")}}*</label>
+        <div class="col-9 p-0">
+          <pv-dropdown id="comment" :options="comments" optionLabel="body" placeholder="Select a Comment" class="w-full"></pv-dropdown>
+        </div>
+      </div>
+
+      <h2>Comments</h2>
+      <div class="field grid">
+        <label for="commentBody" class="col-3 mb-2">{{$t("commentBody")}}*</label>
+        <div class="col-7 p-0">
+          <InputText id="commentBody"  v-model="body"/>
+        </div>
+      </div>
+
+      <div class="field grid">
+        <label for="postId" class="col-3 mb-2">Post ID</label>
+        <div class="col-7 p-0">
+          <InputText id="postId"  v-model="postId"/>
+        </div>
+        <div class="col-2">
+          <Button @click="createComment" aria-label="Comment" class="btn">{{$t("postear")}}</Button>
+        </div>
+      </div>
+
+      <div class="field grid">
+        <label for="commentId" class="col-3 mb-2">Delete ID</label>
+        <div class="col-7 p-0">
+          <InputText id="commentId"  v-model="commentId"/>
+        </div>
+        <div class="col-2">
+          <Button @click="deleteComment" aria-label="Delete Comment" class="btn">{{$t("delete")}}</Button>
+        </div>
+      </div>
+      <Button @click="putComment" aria-label="Update Comment">{{$t("update")}}</Button>
+
+    </div>
   </form>
 </template>
 
 <style scoped>
+
+Button {
+ color:white;
+}
+
 .btn{
   margin:5px 10px;
   color:white;
@@ -70,5 +137,13 @@ export default {
 
 .btn:hover{
   color: indigo;
+}
+
+.card h3{
+  margin-top: 30px;
+}
+
+.card h2{
+  margin-bottom: 10px;
 }
 </style>

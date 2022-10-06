@@ -2,7 +2,13 @@
   "code": "Código",
   "name": "Nombre",
   "phone": "Teléfono",
-  "city": "Ciudad",
+  "category": "Categoría",
+  "comment": "Comentario",
   "greeting": "Hola, {name}",
-  "product": "Ningún producto | Un producto | productos"
+  "product": "Ningún producto | Un producto | productos",
+  "postear": "Comentar",
+  "commentBody": "Cuerpo",
+  "delete": "Eliminar",
+  "update": "Actualizar"
+
 }

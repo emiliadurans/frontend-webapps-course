@@ -2,7 +2,12 @@
   "code": "Code",
   "name": "Name",
   "phone": "Phone",
-  "city": "City",
+  "category": "Category",
+  "comment": "Comment",
   "greeting": "Hello, {name}",
-  "product": "No products | One product | products"
+  "product": "No products | One product | products",
+  "postear": "Comment",
+  "commentBody" : "Body",
+  "delete": "Delete",
+  "update": "Update"
 }
