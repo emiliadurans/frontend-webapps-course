@@ -1,0 +1,8 @@
+{
+  "code": "Code",
+  "name": "Name",
+  "phone": "Phone",
+  "city": "City",
+  "greeting": "Hello, {name}",
+  "product": "No products | One product | products"
+}

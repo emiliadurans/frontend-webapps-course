@@ -2,12 +2,10 @@
 export default {
   data(){
     return{
-      cities:[
-        {name: 'New York', code: 'NY'},
-        {name: 'Rome', code: 'RM'},
-        {name: 'London', code: 'LDN'},
-        {name: 'Istanbul', code: 'IST'},
-        {name: 'Paris', code: 'PRS'}
+      categories:[
+        {name: 'Dairy', code: 'DAI'},
+        {name: 'Produce', code: 'PRD'},
+        {name: 'Meats', code: 'MTS'}
       ]
     }
   }
@@ -17,36 +15,38 @@ export default {
 <template>
   <form>
     <div class="card">
-
+      <h1>{{$t("greeting", {name: "Emilia"})}}</h1>
       <div class="field grid">
-        <label for="code" class="col-12 mb-2 md:col-2 md:mb-0">Codigo*</label>
-        <div class="col-12 md:col-10">
+        <label for="code" class="col-3 mb-2">{{$t("code")}}*</label>
+        <div class="col-7 p-0">
           <InputText id="code"/>
+        </div>
+        <div class="col-2">
           <Button label="validar" class="btn"></Button>
         </div>
       </div>
 
       <div class="field grid">
-        <label for="name" class="col-12 mb-2 md:col-2 md:mb-0">Nombre*</label>
-        <div class="col-12 md:col-10">
-          <InputText id="name"/>
+        <label for="name" class="col-3 mb-2">{{$t("name")}}*</label>
+        <div class="9">
+          <InputText id="name" class="w-full"/>
         </div>
       </div>
 
       <div class="field grid">
-        <label for="phone" class="col-12 mb-2 md:col-2 md:mb-0">Telefono*</label>
-        <div class="col-12 md:col-10">
-          <InputMask id="phone" v-model="value" mask="999-999-999"/>
+        <label for="phone" class="col-3 mb-2">{{$t("phone")}}*</label>
+        <div class="9">
+          <InputMask id="phone" v-model="value" mask="999-999-999" class="w-full"/>
         </div>
       </div>
 
       <div class="field grid">
-        <label for="city" class="col-12 mb-2 md:col-2 md:mb-0">Ciudad*</label>
-        <div class="col-12 md:col-10">
-          <pv-dropdown :options="cities" optionLabel="name" placeholder="Select a City"></pv-dropdown>
+        <label for="city" class="col-3 mb-2">{{$t("city")}}*</label>
+        <div class="col-9 p-0">
+          <pv-dropdown id="city" :options="categories" optionLabel="name" placeholder="Select a Category" class="w-full"></pv-dropdown>
         </div>
       </div>
-
+      <h3>{{$tc("product", 6)}}</h3>
     </div>
 
   </form>
