@@ -1,47 +1,37 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+<script>
+export default {
+  data(){
+    return{
+      cities:[
+        {name: 'New York', code: 'NY'},
+        {name: 'Rome', code: 'RM'},
+        {name: 'London', code: 'LDN'},
+        {name: 'Istanbul', code: 'IST'},
+        {name: 'Paris', code: 'PRS'}
+      ]
+    }
+  }
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-    <div>Hola mundo!</div>
-    <div class="wrapper">
-      <HelloWorld msg="Lo lograste!" />
-    </div>
-  </header>
+  <form>
+    <label for="code">Codigo*</label>
+    <InputText id="code"/>
+    <Button label="validar"></Button>
 
-  <main>
-    <TheWelcome />
-  </main>
+    <label for="name">Nombre*</label>
+    <InputText id="name"/>
+
+    <label for="phone">Telefono*</label>
+    <InputMask id="phone" v-model="value" mask="999-999-999"/>
+
+    <label for="city">Ciudad*</label>
+    <pv-dropdown :options="cities" optionLabel="name" placeholder="Select a City"></pv-dropdown>
+
+  </form>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
