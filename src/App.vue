@@ -1,4 +1,6 @@
 <script>
+import {CommentsServices} from "./services/comments-services";
+
 export default {
   data(){
     return{
@@ -6,10 +8,18 @@ export default {
         {name: 'Dairy', code: 'DAI'},
         {name: 'Produce', code: 'PRD'},
         {name: 'Meats', code: 'MTS'}
-      ]
-    }
+      ],
+    };
+  },
+  created() {
+    new CommentsServices().getComments()
+        .then(response =>{
+          console.log("calling API")
+          console.log(response.status)
+          console.log(response.data)
+        })
   }
-}
+};
 </script>
 
 <template>
