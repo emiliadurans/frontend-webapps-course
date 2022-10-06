@@ -11,6 +11,7 @@ import Dropdown from 'primevue/dropdown';
 import 'primevue/resources/themes/md-dark-deeppurple/theme.css'
 import 'primevue/resources/primevue.min.css'                 //core css
 import 'primeicons/primeicons.css'                           //icons
+import '/node_modules/primeflex/primeflex.css'
 
 const app = createApp(App);
 
